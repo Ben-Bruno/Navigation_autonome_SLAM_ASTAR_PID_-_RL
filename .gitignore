@@ -1,0 +1,10 @@
+# ROS2 build artifacts
+build/
+install/
+log/
+# Cartes generees
+maps/*.pgm
+maps/*.yaml
+# Python cache
+__pycache__/
+*.pyc

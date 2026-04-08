@@ -1,0 +1,19 @@
+ros2 launch gazebo_ros gazebo.launch.py world:=/home/benbruno/turtlebot3_ws/src/projet_robotique_i2/projet_robotique_i2/mon_monde.world
+
+killall -9 gzserver gzclient rviz2
+cd ~/turtlebot3_ws
+colcon build --packages-select projet_robotique_i2
+source install/setup.bash
+export TURTLEBOT3_MODEL=waffle
+ros2 launch projet_robotique_i2 bringup_autonomy.launch.py
+
+
+killall -9 gzserver gzclient rviz2
+ros2 daemon stop
+ros2 daemon start
+
+
+Sauvegarde de la map
+
+
+ros2 run nav2_map_server map_saver_cli -f ~/turtlebot3_ws/src/projet_robotique_i2/maps/map_world --ros-args -p use_sim_time:=true
